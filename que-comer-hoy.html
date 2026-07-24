@@ -12,6 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Qué comer">
+<link rel="manifest" href="manifest.json">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
@@ -313,6 +314,15 @@ function loadLast(){
 }
 
 render(loadLast());
+</script>
+<script>
+/* Registro del Service Worker (PWA). Silencioso: si el navegador no lo
+   soporta o falla, la app funciona igual como antes. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('service-worker.js').catch(function () {});
+  });
+}
 </script>
 </body>
 </html>
